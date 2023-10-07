@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import Board from './components/board';
+import useGame from './model/gameUtil';
 
 function App() {
+
+  const Game = useGame()
+
+  useEffect(() => {
+    Game.newGame();
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Triqui</h1>
+      <Board Game={Game} />
+      <span>Turno {Game.currentPiece} </span>
+      {(Game.winner !== null)
+        && <>
+          {
+            Game.winner === 'draw'
+              ? <h2>Hubo un empate</h2>
+              : <h2>El ganador es {Game.currentPiece}</h2>
+          }
+        </>
+
+      }
+      <br />
+      <button onClick={Game.newGame}>Reiniciar juego</button>
     </div>
   );
 }

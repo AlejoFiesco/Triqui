@@ -1,0 +1,19 @@
+#board{
+    display: grid;
+    width: calc(var(--cell-size)*3);
+    grid-template-columns: repeat(3, 33%);
+    margin: 40px auto;
+}
+
+#board .cell{
+    display: grid;
+    height: var(--cell-size);
+    border: 1px solid;
+    font-size: 48px;
+}
+
+#board .cell:hover{
+    cursor: pointer;
+    border: 1px solid rgb(119, 119, 240);
+    z-index: 10;
+}
